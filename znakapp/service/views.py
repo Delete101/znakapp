@@ -37,6 +37,7 @@ def user_login(request):
         if form.is_valid():
             cd = form.cleaned_data
             user = authenticate(username=cd['username'], password=cd['password'])
+            print(user)
             if user is not None:
                 if user.is_active:
                     login(request, user)
@@ -57,7 +58,7 @@ def register_request(request):
             user = form.save()
             login(request, user)
             messages.success(request, "Registration successful.")
-            return redirect("user_id:user")
+            return redirect(user_login)
         messages.error(request, "Unsuccessful registration. Invalid information.")
     form = NewUserForm()
     return render(request, "service/register.html", {"register_form": form})

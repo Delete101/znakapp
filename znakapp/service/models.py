@@ -1,10 +1,10 @@
-from django.db import models
 from django.conf import settings
 from django.utils.timezone import now
+from django.db import models
 
 
 class UserInfo(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     balance = models.IntegerField(default=0)
 
     def __str__(self):

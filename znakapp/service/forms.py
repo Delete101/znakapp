@@ -4,14 +4,14 @@ from django.contrib.auth.models import User
 
 
 class NewUserForm(UserCreationForm):
-    username = forms.CharField(label='Логин', help_text=' ')
-    email = forms.EmailField(required=True)
-    password1 = forms.CharField(label='Пароль', help_text=' ')
+    username = forms.CharField(label='Логин', help_text='')
+    email = forms.EmailField(required=True, help_text='Пример: test@gmail.com')
+    password1 = forms.CharField(label='Пароль', help_text='Не должен начинаться с цифр')
     password2 = forms.CharField(label='Повторите пароль', help_text=' ')
 
     class Meta:
         model = User
-        fields = ("username", "email", "password1", "password2")
+        fields = ('username', "email", "password1", "password2")
 
     def save(self, commit=True):
         user = super(NewUserForm, self).save(commit=False)

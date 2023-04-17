@@ -1,21 +1,26 @@
 {% extends 'service/base.html' %}
 {% load static %}
+
+
 {% block info %}
 
-<a href="{% url 'logout' %}"><img src="{% static 'icon/exit-icon.png' %}" class="rounded float-end" height="30" alt="..." style="background-color: #4a4a4a;"></a>
+<img src="{% static 'icon/ru.png' %}" class="rounded " height="20" alt="..." style="background-color: #4a4a4a;">
+<img src="{% static 'icon/kz.png' %}" class="rounded mx-3 " height="20" width="32px" alt="..." style="background-color: #4a4a4a;">
+<a href="{% url 'logout' %}"><img src="{% static 'icon/exit-icon.png' %}" class="rounded" height="30" alt="..." style="background-color: #4a4a4a;"></a>
+{% if user_info %}
 {% for elem in user_info %}
-<p class="text-white mx-4 mt-1"><b>{{elem.balance}} ₽</b></p>
+<p class="text-white rounded float-end mx-1 mt-1"><b>{{elem.balance}}₽</b></p>
 {% endfor %}
-<button type="button" class="btn btn-success mt-1 p-1" style="height: 26px;"><p style="font-size: 10px; ">Пополнить</p></button>
-<img src="{% static 'icon/ru.png' %}" class="rounded float-end mx-3 mt-2" height="20" alt="..." style="background-color: #4a4a4a;">
-<img src="{% static 'icon/kz.png' %}" class="rounded float-end  mt-2" height="20" width="32px;" alt="..." style="background-color: #4a4a4a;">
+{% else %}
+<p class="text-white rounded float-end mx-1 mt-1"><b>0₽</b></p>
+{% endif %}
+<button type="button" class="btn btn-success mx-3" style="height: 26px;"><p style="font-size: 10px; ">Пополнить</p></button>
 
 {% endblock %}
 
 
 {% block content %}
-<div class="container">
-
+<div class="container text-center">
 <div class="input-link" style=" margin-top: 70px;">
         <h2 class="text-white"> Здравствуйте, {{ user }}</h2>
     <div class="sevice-img pb-2">
@@ -24,7 +29,7 @@
     <img src="{% static 'icon/m2bomber.png' %}" width="50px" class="px-2">
     <img src="{% static 'icon/olx.svg' %}" class="px-2">
     </div>
-    <div class="input-group mb-5" style="width: 600px;">
+    <div class="input-group mb-5">
   <input type="text" class="form-control" placeholder="Вставьте ссылку" aria-label="Recipient's username" aria-describedby="button-addon2">
   <button class="btn btn-primary" type="submit">Скачать</button>
     </div>
@@ -33,6 +38,7 @@
 
 
 <div class="container">
+    <div class="table-responsive">
 <table class="table" style="background-color: #333232; border-style: dotted">
   <thead class="text-white">
     <tr>
@@ -57,6 +63,7 @@
   {% endfor %}
   </tbody>
 </table>
-    </div>
+</div>
+</div>
 
 {% endblock %}
