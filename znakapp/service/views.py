@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from .forms import LoginForm, NewUserForm
 from django.contrib import messages
-from .models import UserInfo, UserRequests
+from .models import UserInfo, UserRequests, ClearPrice
 
 
 def index(requests):
@@ -26,7 +26,12 @@ def cabinet(request, user_id):
     if request.user.is_authenticated:
         user_info = UserInfo.objects.filter(user=request.user)
         user_request = UserRequests.objects.filter(user=request.user)
-        return render(request, 'service/cabinet.html', {'user_info': user_info, 'user_request': user_request})
+        clear_price = ClearPrice.objects.all()
+        for elem in clear_price:
+            clear_price = elem.clear_price
+        for elem in user_info:
+            balance = elem.balance/clear_price
+        return render(request, 'service/cabinet.html', {'user_info': round(int(balance), 1), 'user_request': user_request})
     else:
         return redirect('login')
 

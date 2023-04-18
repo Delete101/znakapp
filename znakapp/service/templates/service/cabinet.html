@@ -8,9 +8,7 @@
 <img src="{% static 'icon/kz.png' %}" class="rounded mx-3 " height="20" width="32px" alt="..." style="background-color: #4a4a4a;">
 <a href="{% url 'logout' %}"><img src="{% static 'icon/exit-icon.png' %}" class="rounded" height="30" alt="..." style="background-color: #4a4a4a;"></a>
 {% if user_info %}
-{% for elem in user_info %}
-<p class="text-white rounded float-end mx-1 mt-1"><b>{{elem.balance}}₽</b></p>
-{% endfor %}
+<p class="text-white rounded float-end mx-1 mt-1"><b>{{user_info}} очисток</b></p>
 {% else %}
 <p class="text-white rounded float-end mx-1 mt-1"><b>0₽</b></p>
 {% endif %}

@@ -21,3 +21,10 @@ class UserRequests(models.Model):
 
     def __str__(self):
         return '{0} '.format(self.user)
+
+
+class ClearPrice(models.Model):
+    clear_price = models.IntegerField()
+
+    def __str__(self):
+        return '{0} '.format(self.clear_price)
