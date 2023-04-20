@@ -29,9 +29,10 @@ def cabinet(request, user_id):
         clear_price = ClearPrice.objects.all()
         for elem in clear_price:
             clear_price = elem.clear_price
+        balance = 0
         for elem in user_info:
             balance = elem.balance/clear_price
-        return render(request, 'service/cabinet.html', {'user_info': round(int(balance), 1), 'user_request': user_request})
+        return render(request, 'service/cabinet.html', {'user_info': int(balance), 'user_request': user_request})
     else:
         return redirect('login')
 

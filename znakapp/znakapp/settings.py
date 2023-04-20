@@ -37,8 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'service',
-    'django_forms_bootstrap'
+    'service.apps.ServiceConfig',
+    'django_forms_bootstrap',
+    # 'Users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -120,6 +121,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# AUTH_USER_MODEL = 'Users.CustomUser'
+
 
 
 # Default primary key field type
