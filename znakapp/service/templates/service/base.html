@@ -78,10 +78,13 @@
     <img src="{% static 'icon/m2bomber.png' %}" width="50px" class="px-2">
     <img src="{% static 'icon/olx.svg' %}" class="px-2">
     </div>
+    <form action="" method="POST">
+        {% csrf_token %}
     <div class="input-group mb-5">
-  <input type="text" class="form-control" placeholder="Вставьте ссылку" aria-label="Recipient's username" aria-describedby="button-addon2">
-  <a href="{% url 'login' %}"><button class="btn btn-primary" type="submit">Скачать</button></a>
+  <input type="text" class="form-control" placeholder="Вставьте ссылку" aria-label="Recipient's username" aria-describedby="button-addon2" name="link_input">
+  <input class="btn btn-primary" type="submit" value="Скачать">
 </div>
+    </form>
 
 
 <!--    <div class="text-center">  -->

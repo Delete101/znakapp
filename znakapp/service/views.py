@@ -4,10 +4,19 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import LoginForm, NewUserForm
 from django.contrib import messages
 from .models import UserInfo, UserRequests, ClearPrice
+from .parsers_znakapp.main import main
+from .lama.prepare_masks import main as prepare_mask
+# from .lama.lama.bin.predict import main
 
 
 def index(requests):
-    return render(requests, 'service/base.html', {})
+    if requests.method == 'POST':
+        input_value = requests.POST.get('link_input')
+        main(input_value)
+        prepare_mask()
+        # main()
+        # Делайте что-то с полученным значением
+    return render(requests, 'service/base.html', {'output_img': 0})
 
 
 def how_it_work(requests):
